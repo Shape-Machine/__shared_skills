@@ -44,9 +44,31 @@ Analyse the changes across the following dimensions:
 - **Error handling** — unhandled exceptions, swallowed errors, missing user feedback
 - **Performance** — obvious inefficiencies introduced by the change
 
-### 5. Present findings one by one
+### 5. Dump all findings as an overview
 
-For each finding, present it individually in this format:
+Present all findings at once in a summary table:
+
+```
+## Code Review — N findings
+
+#  Severity  Category        File:Line                        Summary
+1  High      Logic           src/api/orders.ts:42             Incorrect total calculation
+2  High      Security        src/auth/login.ts:18             Password logged on failure
+3  Medium    Edge Case       src/utils/parse.ts:7             No null check before .trim()
+4  Low       Quality         src/components/Modal.tsx:55      Magic number, should be a constant
+```
+
+Severity guide:
+- **Critical** — likely to cause data loss, security breach, or production crash
+- **High** — significant bug or risk that should be fixed before merging
+- **Medium** — notable issue worth addressing soon but not a blocker
+- **Low** — improvement or nitpick, nice to have
+
+After the table, ask: _"Ready to go through these one by one? (y/n)"_
+
+### 6. One-by-one session
+
+If the user says `y`, walk through each finding individually:
 
 ```
 ── Finding #N ─────────────────────────────
@@ -62,16 +84,9 @@ Suggestion:
 Create a GitHub issue for this? (y/n)
 ```
 
-Wait for the user to respond before showing the next finding.
+Wait for the user's response before showing the next finding.
 
-Severity guide:
-- **Critical** — likely to cause data loss, security breach, or production crash
-- **High** — significant bug or risk that should be fixed before merging
-- **Medium** — notable issue worth addressing soon but not a blocker
-- **Low** — improvement or nitpick, nice to have
-
-### 6. Create issues on demand
-If the user responds `y` to a finding, invoke the `/pm-spec` sub-skill to create a GitHub issue for it on the current milestone. Confirm the issue number before moving to the next finding.
+If the user responds `y`, invoke the `/pm-spec` sub-skill to create a GitHub issue on the current milestone. Confirm the issue number before continuing.
 
 ### 7. Summary
 After all findings, show a summary:
