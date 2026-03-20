@@ -56,5 +56,6 @@ Skills live in `skills/` as `.md` files and are prefixed by category:
 | `/pm-review` | Audit UX, copy, missing states, onboarding, and product debt — create issues |
 | `/pm-perf` | Identify performance opportunities — create approved ones as milestone issues |
 | `/pm-spec` | _(internal)_ Turn a feature/finding into a well-formed GitHub issue |
+| `/doc-features` | Generate or update `docs/features.md` — CEO-readable feature overview from the codebase (main only) |
 
 Add new skills as `skills/<prefix>-<name>.md`. Follow existing conventions.
