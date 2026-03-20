@@ -50,6 +50,7 @@ Skills live in `skills/` as `.md` files and are prefixed by category:
 |---|---|
 | `/dev-milestone` | Show open/closed issues for the current milestone, grouped by title similarity |
 | `/dev-impl` | Read issues, review code, propose an impl plan, then implement on a feature branch |
+| `/dev-review` | Review uncommitted changes or branch diff vs main — severity-scored findings, optional issue creation |
 | `/pm-features` | Suggest new features for the ICP, create approved ones as milestone issues |
 | `/pm-review` | Audit UX, copy, missing states, onboarding, and product debt — create issues |
 | `/pm-perf` | Identify performance opportunities — create approved ones as milestone issues |
