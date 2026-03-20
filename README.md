@@ -2,10 +2,46 @@
 
 Reusable Claude / agent skills shared across projects.
 
-## Usage
+## TL;DR Installation
 
-Install a skill into a project by copying or symlinking it from this repo into the project's `.claude/skills/` directory, or by referencing it in your Claude Code configuration.
+### Claude Code
+
+**Global (available in all projects):**
+```bash
+# Clone this repo
+git clone git@github.com:Shape-Machine/__shared_skills.git ~/.claude/__shared_skills
+
+# Symlink skills into your global Claude commands directory
+ln -s ~/.claude/__shared_skills/skills/* ~/.claude/commands/
+```
+
+**Per-project:**
+```bash
+# From inside your project root
+ln -s path/to/__shared_skills/skills/* .claude/commands/
+```
+
+Slash commands are `.md` files — Claude Code picks them up automatically from `~/.claude/commands/` (global) or `.claude/commands/` (project).
+
+---
+
+### Codex CLI
+
+**Global:**
+```bash
+# Symlink or copy skills into Codex's instructions directory
+ln -s path/to/__shared_skills/skills/* ~/.codex/instructions/
+```
+
+**Per-project:**
+```bash
+ln -s path/to/__shared_skills/skills/* .codex/instructions/
+```
+
+Codex picks up `.md` instruction files from `~/.codex/instructions/` (global) or `.codex/instructions/` (project).
+
+---
 
 ## Structure
 
-Skills are organized by name, each in its own directory or file. Follow existing conventions when adding new skills.
+Skills are organized by name, each in its own `.md` file or subdirectory. Follow existing conventions when adding new skills.
