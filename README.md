@@ -44,4 +44,11 @@ Codex picks up `.md` instruction files from `~/.codex/instructions/` (global) or
 
 ## Structure
 
-Skills are organized by name, each in its own `.md` file or subdirectory. Follow existing conventions when adding new skills.
+Skills live in `skills/` as `.md` files and are prefixed by category:
+
+| Skill | Description |
+|---|---|
+| `/dev-milestone` | Show open/closed issues for the current milestone, grouped by title similarity |
+| `/dev-impl` | Read issues, review code, propose an impl plan, then implement on a feature branch |
+
+Add new skills as `skills/<prefix>-<name>.md`. Follow existing conventions.
