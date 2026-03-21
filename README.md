@@ -12,13 +12,13 @@ Reusable Claude / agent skills shared across projects.
 git clone git@github.com:Shape-Machine/__shared_skills.git ~/.claude/__shared_skills
 
 # Symlink skills into your global Claude commands directory
-ln -s ~/.claude/__shared_skills/skills/* ~/.claude/commands/
+ln -s ~/.claude/__shared_skills/skills/* ~/.claude/skills/
 ```
 
 **Per-project:**
 ```bash
 # From inside your project root
-ln -s path/to/__shared_skills/skills/* .claude/commands/
+ln -s path/to/__shared_skills/skills/* .claude/skills/
 ```
 
 Slash commands are `.md` files — Claude Code picks them up automatically from `~/.claude/commands/` (global) or `.claude/commands/` (project).
