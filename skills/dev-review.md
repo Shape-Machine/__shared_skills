@@ -13,12 +13,15 @@ Detect the GitHub repo from `git remote get-url origin`.
 
 ### 2. Determine what to review
 
-Check for uncommitted changes:
+Check the current branch and uncommitted changes:
 ```
+git branch --show-current
 git status --short
 git diff
 git diff --cached
 ```
+
+Record whether the session is on a **feature branch** (anything other than `main` or `master`) — this affects the one-by-one session in step 6.
 
 - **If there are uncommitted changes** (staged or unstaged): review those diffs.
 - **If the working tree is clean**: find all commits on the current branch that are not on main:
@@ -81,12 +84,21 @@ Category: <Logic | Edge Case | Security | Quality | Error Handling | Performance
 Suggestion:
 <Specific, actionable fix>
 ───────────────────────────────────────────
-Create a GitHub issue for this? (y/n)
 ```
 
-Wait for the user's response before showing the next finding.
+The action prompt after each finding depends on context:
 
-If the user responds `y`, invoke the `/pm-spec` sub-skill to create a GitHub issue on the current milestone. Confirm the issue number before continuing.
+**On a feature branch:**
+- If the fix is a concrete code change: ask _"Fix this now? (y/n)"_
+  - If `y`: apply the fix directly, confirm the change, then continue to the next finding.
+  - If `n`: ask _"Create a GitHub issue instead? (y/n)"_ — if `y`, invoke `/pm-spec`.
+- If the fix is not a concrete code change (architectural concern, missing tests, design issue): skip the fix prompt and ask _"Create a GitHub issue for this? (y/n)"_ — if `y`, invoke `/pm-spec`.
+
+**On main (or reviewing a clean branch with no active work):**
+- Ask _"Create a GitHub issue for this? (y/n)"_
+- If `y`, invoke the `/pm-spec` sub-skill to create a GitHub issue on the current milestone. Confirm the issue number before continuing.
+
+Wait for the user's response before showing the next finding.
 
 ### 7. Summary
 After all findings, show a summary:
@@ -94,7 +106,8 @@ After all findings, show a summary:
 ```
 ## Review complete
 X findings  (N critical, N high, N medium, N low)
-Y issues created: #<numbers>
+Y fixed in place
+Z issues created: #<numbers>
 ```
 
 If there were no findings: _"No issues found — looks good to merge."_
