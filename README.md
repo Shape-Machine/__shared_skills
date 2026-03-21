@@ -50,6 +50,8 @@ Skills live in `skills/` as `.md` files and are prefixed by category:
 |---|---|
 | `/dev-milestone` | Show open/closed issues for the current milestone, grouped by title similarity |
 | `/dev-impl` | Read issues, review code, propose an impl plan, then implement on a feature branch |
+| `/dev-pr` | Draft and create a PR for the current feature branch |
+| `/dev-pr-merged` | Switch to main, pull, verify PR is merged, delete local feature branch |
 | `/dev-review` | Review uncommitted changes or branch diff vs main — severity-scored findings, optional issue creation |
 | `/sec-audit` | Security audit of diff, branch, or full source (on main) — overview then one-by-one session |
 | `/pm-features` | Suggest new features for the ICP, create approved ones as milestone issues |
