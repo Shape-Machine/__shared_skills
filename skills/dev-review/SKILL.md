@@ -1,3 +1,8 @@
+---
+name: dev-review
+description: Review code for quality, logic, edge cases, and security issues from uncommitted changes or branch diff vs main.
+---
+
 # /dev-review
 
 Review code for quality, logic, edge cases, and security issues — working from either uncommitted changes or the full branch diff vs main.

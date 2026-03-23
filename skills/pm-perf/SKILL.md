@@ -1,3 +1,9 @@
+---
+name: pm-perf
+description: Identify performance optimisation opportunities in the codebase and create GitHub issues for approved findings on the current milestone.
+argument-hint: [focus-area]
+---
+
 # /pm-perf
 
 Identify performance optimisation opportunities in the codebase, then create GitHub issues for approved findings on the current milestone.

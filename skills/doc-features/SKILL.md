@@ -1,3 +1,8 @@
+---
+name: doc-features
+description: Generate or update docs/features.md with a clean, CEO-readable overview of all product features derived from the codebase. Runs on main only.
+---
+
 # /doc-features
 
 Generate or update `docs/features.md` — a clean, CEO-readable overview of all product features, derived from the codebase.

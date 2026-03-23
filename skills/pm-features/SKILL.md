@@ -1,3 +1,9 @@
+---
+name: pm-features
+description: Suggest new features tailored to the product's ICP/persona and create GitHub issues for approved suggestions on the current milestone.
+argument-hint: [persona-hint]
+---
+
 # /pm-features
 
 Suggest new features tailored to the product's ICP/persona, then create GitHub issues for the approved suggestions on the current milestone.

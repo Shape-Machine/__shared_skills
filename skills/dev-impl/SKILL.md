@@ -1,3 +1,9 @@
+---
+name: dev-impl
+description: Read GitHub issues, review relevant code, propose an implementation plan, and implement it on a feature branch after approval.
+argument-hint: <issue-number> [issue-number ...]
+---
+
 # /dev-impl
 
 Read one or more GitHub issues, review the relevant code, propose an implementation plan, and implement it on a feature branch after approval.

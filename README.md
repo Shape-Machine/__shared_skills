@@ -11,7 +11,7 @@ Reusable Claude / agent skills shared across projects.
 # Clone this repo
 git clone git@github.com:Shape-Machine/__shared_skills.git ~/.claude/__shared_skills
 
-# Symlink skills into your global Claude commands directory
+# Symlink skills into your global Claude skills directory
 ln -s ~/.claude/__shared_skills/skills/* ~/.claude/skills/
 ```
 
@@ -21,7 +21,7 @@ ln -s ~/.claude/__shared_skills/skills/* ~/.claude/skills/
 ln -s path/to/__shared_skills/skills/* .claude/skills/
 ```
 
-Slash commands are `.md` files — Claude Code picks them up automatically from `~/.claude/commands/` (global) or `.claude/commands/` (project).
+Claude Code picks up skills automatically from `~/.claude/skills/` (global) or `.claude/skills/` (project). Each skill is a directory containing a `SKILL.md` file.
 
 ---
 
@@ -44,7 +44,7 @@ Codex picks up `.md` instruction files from `~/.codex/instructions/` (global) or
 
 ## Structure
 
-Skills live in `skills/` as `.md` files and are prefixed by category:
+Skills live in `skills/<name>/SKILL.md` and are prefixed by category:
 
 | Skill | Description |
 |---|---|
@@ -60,4 +60,4 @@ Skills live in `skills/` as `.md` files and are prefixed by category:
 | `/pm-spec` | _(internal)_ Turn a feature/finding into a well-formed GitHub issue |
 | `/doc-features` | Generate or update `docs/features.md` — CEO-readable feature overview from the codebase (main only) |
 
-Add new skills as `skills/<prefix>-<name>.md`. Follow existing conventions.
+Add new skills as `skills/<prefix>-<name>/SKILL.md` with YAML frontmatter. Follow existing conventions.

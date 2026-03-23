@@ -1,3 +1,8 @@
+---
+name: dev-pr-merged
+description: Switch to main, pull latest, verify the feature branch PR is merged, and delete the local branch.
+---
+
 # /dev-pr-merged
 
 Switch to main, pull latest, verify the current feature branch's PR is merged, and delete the local feature branch.

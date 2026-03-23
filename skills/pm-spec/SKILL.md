@@ -1,6 +1,12 @@
+---
+name: pm-spec
+description: Internal sub-skill. Creates well-formed GitHub issues from feature suggestions, UX findings, or performance opportunities.
+user-invocable: false
+---
+
 # /pm-spec (internal sub-skill)
 
-> ⚠️ This is an internal sub-skill. Do not invoke it directly — it is called by `/pm-features`, `/pm-review`, and `/pm-perf` to create GitHub issues.
+> ⚠️ This is an internal sub-skill. Do not invoke it directly — it is called by `/pm-features`, `/pm-review`, `/pm-perf`, `/dev-review`, and `/sec-audit` to create GitHub issues.
 
 ## Purpose
 

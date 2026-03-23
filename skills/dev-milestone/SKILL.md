@@ -1,3 +1,9 @@
+---
+name: dev-milestone
+description: Show a structured view of the current GitHub milestone's issues grouped by theme with suggested branch names.
+argument-hint: [milestone-title-or-number]
+---
+
 # /dev-milestone
 
 Show a structured view of the current GitHub milestone's issues, grouped by theme.

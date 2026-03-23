@@ -1,3 +1,8 @@
+---
+name: sec-audit
+description: Audit code for security vulnerabilities, insecure patterns, and sensitive data exposure — overview then one-by-one session.
+---
+
 # /sec-audit
 
 Audit code for security vulnerabilities, insecure patterns, and sensitive data exposure.

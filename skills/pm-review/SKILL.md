@@ -1,3 +1,9 @@
+---
+name: pm-review
+description: Audit the product for UX friction, missing states, copy issues, onboarding gaps, and product debt — then create GitHub issues for findings.
+argument-hint: [focus-area]
+---
+
 # /pm-review
 
 Holistic product review: audit the codebase for UX friction, missing states, copy issues, onboarding gaps, and product debt — then create GitHub issues for findings on the current milestone.

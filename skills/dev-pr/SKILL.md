@@ -1,3 +1,8 @@
+---
+name: dev-pr
+description: Draft and create a pull request for the current feature branch.
+---
+
 # /dev-pr
 
 Create a pull request for the current feature branch.
