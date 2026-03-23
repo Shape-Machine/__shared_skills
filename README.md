@@ -25,23 +25,6 @@ Claude Code picks up skills automatically from `~/.claude/skills/` (global) or `
 
 ---
 
-### Codex CLI
-
-**Global:**
-```bash
-# Symlink or copy skills into Codex's instructions directory
-ln -s path/to/__shared_skills/skills/* ~/.codex/instructions/
-```
-
-**Per-project:**
-```bash
-ln -s path/to/__shared_skills/skills/* .codex/instructions/
-```
-
-Codex picks up `.md` instruction files from `~/.codex/instructions/` (global) or `.codex/instructions/` (project).
-
----
-
 ## Structure
 
 Skills live in `skills/<name>/SKILL.md` and are prefixed by category:
