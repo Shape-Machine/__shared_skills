@@ -75,4 +75,78 @@ gh pr create --title "<title>" --body "<body>"
 ```
 
 ### 8. Report
-Print the PR URL returned by `gh pr create`. Done.
+Print the PR URL returned by `gh pr create`.
+
+### 9. Wait for Qodo review and assess suggestions
+
+After reporting the PR URL, ask the user:
+_"Wait for Qodo to review this PR? (~7 minutes) (y/n)"_
+
+If the user says no, skip this step entirely and end.
+
+If the user says yes:
+
+**9a. Wait for Qodo**
+
+Wait 7 minutes. Display a countdown message every minute so the user knows what is happening:
+```
+⏳ Waiting for Qodo review... 7 minutes remaining
+⏳ Waiting for Qodo review... 6 minutes remaining
+...
+✅ Checking for Qodo review now
+```
+
+Use `sleep 60` in a loop or equivalent to implement the countdown.
+
+**9b. Fetch Qodo review comments**
+
+Detect the git provider from `git remote get-url origin`, then fetch PR comments.
+
+For GitHub:
+```bash
+gh pr view --json number --jq '.number'     # get PR number
+gh api repos/{owner}/{repo}/issues/{pr_number}/comments   # PR-level comments
+gh api repos/{owner}/{repo}/pulls/{pr_number}/comments    # inline review comments
+```
+
+Look for comments where the author login is one of: `qodo-merge[bot]`, `pr-agent-pro`, `pr-agent-pro-staging`, `qodo-ai[bot]`.
+
+**9c. Handle review-not-ready cases**
+
+- If no Qodo comments found at all: inform _"Qodo hasn't reviewed yet. Run `/qodo-pr-resolver` in a few minutes."_ and end.
+- If any comment contains "Come back again in a few minutes" or "An AI review agent is analysing this pull request": inform _"Qodo review is still in progress. Run `/qodo-pr-resolver` in a few minutes."_ and end.
+
+**9d. Parse and assess each suggestion**
+
+Extract the individual suggestions/issues from the Qodo comments (deduplicate inline vs. summary comments by issue title, as described in the qodo-pr-resolver skill).
+
+For each suggestion, **read the referenced file and lines** to assess its validity:
+
+```
+Read <file>:<lines> to understand the current code at that location
+```
+
+Then assess each suggestion using this rubric:
+- **Valid** — the issue exists in the current code as Qodo describes, and the fix is applicable and correct
+- **Stale** — Qodo's description references code that has already been changed or no longer exists at the cited location
+- **Invalid** — the issue does not actually apply (false positive, misunderstood context, or the fix would break things)
+
+**9e. Display assessment table**
+
+Present findings in this format:
+
+```
+Qodo Review for PR #<N>: <PR Title>
+<total> suggestions found — <valid count> need attention
+
+| # | Severity | Issue Title | Location | Assessment | Reason |
+|---|----------|-------------|----------|------------|--------|
+| 1 | 🔴 CRITICAL | Missing input validation | src/api.py:42 | ✅ Valid | Input is passed directly to the query without sanitization |
+| 2 | 🟡 MEDIUM | Rename variable for clarity | src/utils.py:18 | ⚠️ Stale | The variable `foo` was already renamed to `bar` in this branch |
+| 3 | ⚪ LOW | Add docstring | src/models.py:7 | ❌ Invalid | This is an internal private method not part of the public API |
+```
+
+Severity follows the same mapping as qodo-pr-resolver (position within "Action required" / "Review recommended" / "Other" groups).
+
+After the table, print a short summary:
+_"Run `/qodo-pr-resolver` to interactively fix the valid suggestions."_
