@@ -41,7 +41,22 @@ If neither yields any diff (e.g. on main with nothing to commit), abort: _"Nothi
 ### 3. Understand context
 Before reviewing, briefly read the files touched by the diff to understand the surrounding code and intent. Do not review in isolation.
 
-### 4. Review the diff
+### 4. Run project review checks
+
+Run lightweight project-specific review checks when they exist. These checks inform
+the review; they do not replace reading the diff.
+
+If the repository contains `_dev/style-audit.sh`, run:
+```
+_dev/style-audit.sh
+```
+
+Use the output to review style consistency. If the reviewed diff introduces new
+template `<style>` blocks or inline `style=` attributes, report that as a finding.
+If the audit shows pre-existing style debt outside the reviewed diff, mention it
+only as residual risk or a test gap unless it is directly affected by the change.
+
+### 5. Review the diff
 
 Analyse the changes across the following dimensions:
 
@@ -52,7 +67,7 @@ Analyse the changes across the following dimensions:
 - **Error handling** — unhandled exceptions, swallowed errors, missing user feedback
 - **Performance** — obvious inefficiencies introduced by the change
 
-### 5. Dump all findings as an overview
+### 6. Dump all findings as an overview
 
 Present all findings at once in a summary table:
 
@@ -74,7 +89,7 @@ Severity guide:
 
 After the table, ask: _"Ready to go through these one by one? (y/n)"_
 
-### 6. One-by-one session
+### 7. One-by-one session
 
 If the user says `y`, walk through each finding individually:
 
@@ -105,7 +120,7 @@ The action prompt after each finding depends on context:
 
 Wait for the user's response before showing the next finding.
 
-### 7. Summary
+### 8. Summary
 After all findings, show a summary:
 
 ```
